@@ -185,7 +185,7 @@ rqt_graph
   rosrun rviz rviz
   ```
   
-## op3 설치(docker)  
+## 2. op3 설치(docker)  
 도커에 op3설치를 시작한다.  
 >참고 링크:https://emanual.robotis.com/docs/en/platform/op3/recovery/#recovery-of-robotis-op3  
 >추가 로보티즈 ROS패키지를 설치한다.
@@ -298,4 +298,27 @@ cd ~/docker_share/catkin_ws
 catkin_make
 ```
 >설치가 끝났다면 도커 컨테이너 이미지 파일로 저장해야 되는거 잊지 말자!
+
+
+## 3. 쉬운 코드 편집 작업을 위한 VScode 설치(host)(VScode는 jetson 설치 기준입니다. 일반 데스크톱은 직접 검색할 것!)
+>참고 주소: https://opencourse.tistory.com/221  
+>참고 주소: https://mylogcenter.tistory.com/7  
+>참고 주소: https://makingrobot.tistory.com/83  
+>설치
+```
+1. https://github.com/toolboc/vscode/releases에서 release 다운로드
+2. 다운이 완료되면 다음 명령어로 설치진행 sudo dpkg -i code-oss_1.32.3-arm64.deb   
+```
+>파이썬 편집을 위한 세팅(필수 아님)(하지만 하면 좋음)
+  1. VScode로 들어간다.
+  2. Extension에서 python 설치
+  3. Visual Studio IntelliCode 설치
+  4. Python for VSCode 설치
+  5. Python Extension Pack 설치
+  6. code Runner 설치
+>이제 cpp파일을 열거나 python 파일등 문서 파일을 열 때 code-oss 파일이름 을 치시면 됩니다.  
+>cpp 위주로 편집하신다면 파이썬 편집을 위한 세팅 대신 검색하셔서 알맞은 환경 세팅을 부탁드립니다.  
+>http://wanochoi.com/?p=4643에 따라 pycharm을 설치한다면 pycharm 실행 명령어는 다음과 같습니다.  
+>sudo pycharm.sh  
+>pycharm을 설치하시고 인터프리터 연결을 python 가상환경과 연결하면 자동 완성 기능 사용가능
 ---
