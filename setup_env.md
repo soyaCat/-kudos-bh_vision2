@@ -112,6 +112,7 @@ sudo apt-get update
   ./build.sh
   ```
   #### 5. 생성된 이미지를 확인한다. 아마 ros_kinect_full이라는 이미지가 생성되었을 것이다.(host)  
+  #### 6. 같은 폴더에 docker_share 란 폴더가 있을 것이다.  
   #### 7. run-docker.sh파일을 실행시켜준다.(host)
   #### 8. 그러면 실행 터미널에서 이미지를 가지고 컨테이너를 만들어 접속한다.(host)
   #### 9. ls치면 docker_share이라는 폴더가 보일텐데 호스트 컴퓨터와 컨테이너 이미지가 공동으로 사용하는 폴더라 생각하면 된다. 이 폴더 아래에 catkin_ws를 설정해야함을 주의하자(docker)
