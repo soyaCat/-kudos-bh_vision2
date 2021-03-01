@@ -49,7 +49,7 @@
 >sudo docker rmi -f [이미지id]로 이미지를 삭제하면서 생성된 컨테이너도 같이 삭제할 수있다.  
 >sudo docker commit 컨테이터이름 생성할이미지이름으로 생성된 컨테이너를 이미지화 할 수 있다.  
 
-  2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치(선택)  
+  2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치  
   docker version 명령어로 도커 설치를 확인한다.    
   혹여 nvidia docker1이 설치되어 있을 수도 있으니 다음 명령어로 깔끔하게 삭제해준다.  
   ```
