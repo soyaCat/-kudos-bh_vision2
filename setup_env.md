@@ -48,22 +48,68 @@
 >sudo docker rmi [이미지id]로 이미지들을 삭제할 수 있다.  
 >sudo docker rmi -f [이미지id]로 이미지를 삭제하면서 생성된 컨테이너도 같이 삭제할 수있다.  
 >sudo docker commit 컨테이터이름 생성할이미지이름으로 생성된 컨테이너를 이미지화 할 수 있다.  
+
+  2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치(선택)  
+  docker version 명령어로 도커 설치를 확인한다.  
+  https://github.com/docker/compose/releases/로 가서 릴리즈 최신 정보를 확인해준다. (현재 글 작성 기준 1.28.5)  
+  혹여 nvidia docker1이 설치되어 있을 수도 있으니 다음 명령어로 깔끔하게 삭제해준다.  
+  ```
+  docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+sudo apt-get purge -y nvidia-docker
+  ```
+  apt키와 레포지스토리를 추가해준다.  
+  ```
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
   
-  2. 원하는 경로에 ros-docker2폴더를 둔다.  
-  3. 터미널에서 ros-docker2로 들어간뒤 build.sh파일을 실행시켜준다.
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+  
+sudo apt-get update
+  ```
+  nvidia docker2 설치
+  ```
+  sudo apt-get install -y nvidia-docker2
+  ```
+  도커 데몬 리로드
+  ```
+  sudo pkill -SIGHUP dockerd
+  ```
+  도커 상에서 nvidia-smi 테스트
+  ```
+  docker run --runtime=nvidia --rm nvidia/cuda:10.2-devel nvidia-smi
+  ```
+  nvidia-container-toolkit 설치
+  ```
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    
+    curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+    
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d   /nvidia-docker.list
+
+  sudo apt update && sudo apt install -y nvidia-container-toolkit
+  
+  sudo systemctl restart docker
+  ```
+  
+  3. 원하는 경로에 ros-docker3폴더를 둔다.  
+  4. 터미널에서 ros-docker3로 들어간뒤 build.sh파일을 실행시켜준다.
   ```
   ./build.sh
   ```
-  4. 생성된 이미지를 확인한다. 아마 travis/kinetic라는 이미지가 생성되었을 것이다.  
-  5. run-docker.sh파일을 보면 중간에 있는 if바로 밑에 IMAGE='ros_kinect_full'이라 되어있을 텐데 이걸 'travis/kinetic:dev'로 바꾸어 준다.
-  6. run-docker.sh파일을 실행시켜준다.
-  7. 그러면 실행 터미널에서 이미지를 가지고 컨테이너를 만들어 접속한다.
-  8. ls치면 docker_share이라는 폴더가 보일텐데 호스트 컴퓨터와 컨테이너 이미지가 공동으로 사용하는 폴더라 생각하면 된다. 이 폴더 아래에 catkin_ws를 설정해야함을 주의하자
-  9. 이제 본격적으로 ros를 설치한다.
+  5. 생성된 이미지를 확인한다. 아마 ros_kinect_full이라는 이미지가 생성되었을 것이다.  
+  7. run-docker.sh파일을 실행시켜준다.
+  8. 그러면 실행 터미널에서 이미지를 가지고 컨테이너를 만들어 접속한다.
+  9. ls치면 docker_share이라는 폴더가 보일텐데 호스트 컴퓨터와 컨테이너 이미지가 공동으로 사용하는 폴더라 생각하면 된다. 이 폴더 아래에 catkin_ws를 설정해야함을 주의하자
+  10. 이제 본격적으로 ros를 설치한다.
   ```
   sudo apt-get install -y chrony ntpdate
   
   sudo ntpdate -q ntp.ubuntu.com
+  
+  sudo apt-get update && sudo apt-get install -y lsb-release && sudo apt-get clean all
   
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
   
@@ -85,7 +131,7 @@
   
   cd ~/docker_share/
   
-  mkdir -p /catkin_ws/src
+  mkdir -p ~/docker_share/catkin_ws/src
   
   cd catkin_ws/src
   
@@ -97,14 +143,14 @@
   
   source ~/docker_share/catkin_ws/devel/setup.bash
   ```
-  10. roscore를 실행시켜보고 잘 되면 ctrl+C로 나간다.
-  11. gedit을 깐다.
-  12. 다음 명령을 입력한다.
+  11. roscore를 실행시켜보고 잘 되면 ctrl+C로 나간다.
+  12. gedit을 깐다.
+  13. 다음 명령을 입력한다.
   ```
   source /opt/ros/kinetic/setup.bash
   source ~/docker_share/catkin_ws/devel/setup.bash
   ```
-  13. gedit ~/.bashrc을 실행 시켜 다음의 내용을 삽입한다.(비슷해보이는 부분이 있을텐데 지우거나 수정하면 된다.)
+  14. gedit ~/.bashrc을 실행 시켜 다음의 내용을 삽입한다.(비슷해보이는 부분이 있을텐데 지우거나 수정하면 된다.)
   ```
   alias eb ='nano ~/.bashrc'
   alias sb ='source ~/.bashrc'
@@ -117,8 +163,8 @@
   export ROS_HOSTNAME=localhost
   ```
   
-  14.컨테이너는 휘발성이기 때문에 docker_share안의 내용물을 제외하고는 종료했다가 다시 실행하면 그 내역이 모두 날아가게된다. roscore 실행을 확인했다면 그 컨테이너를 이미지로 저장해준다.(위에 하는 방법 적혀있음), 나는 ros_kinect_full로 이미지 파일 이름을 통일할 것이기 때문에 이미지 파일 이름을 똑같이 해주면 편할 것이다. 이미지 파일로 만들어주고 run-docker.sh의 실행시킬 이미지를 ros_kinect_full로 다시 돌려놓으면 ros설치는 종료다.  
-  15. ros의 사용법은 큰 차이는 없다. 가장 큰 차이라면 호스트의 터미널을 실행시켰다면 ./run-docker.sh를 이용하여 컨테이너 터미널로 만들어주어야한다는 사실 정도이다. 터미널 4개를 틀고 각각 ./run-docker.sh을 실행시켜 준 후 각 터미널에 다음 명령을 입력하여 ros의 최종 설치를 확인한다.
+  15.컨테이너는 휘발성이기 때문에 docker_share안의 내용물을 제외하고는 종료했다가 다시 실행하면 그 내역이 모두 날아가게된다. roscore 실행을 확인했다면 그 컨테이너를 이미지로 저장해준다.(위에 하는 방법 적혀있음<sudo docker commit 컨테이터이름 생성할이미지이름>), 나는 ros_kinect_full로 이미지 파일 이름을 통일할 것이기 때문에 이미지 파일 이름을 똑같이 해주면 편할 것이다. 이미지 파일로 만들어주면 ros설치는 종료다.  
+  16. ros의 사용법은 큰 차이는 없다. 가장 큰 차이라면 호스트의 터미널을 실행시켰다면 ./run-docker.sh를 이용하여 컨테이너 터미널로 만들어주어야한다는 사실 정도이다. 터미널 4개를 틀고 각각 ./run-docker.sh을 실행시켜 준 후 각 터미널에 다음 명령을 입력하여 ros의 최종 설치를 확인한다.
 ```
 #터미널1
 roscore
