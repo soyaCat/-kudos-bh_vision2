@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/soya/docker_share/catkin_ws/devel:$CMAKE_PREFIX_PATH"
+export CMAKE_PREFIX_PATH="/home/nvidia/docker_share/catkin_ws/devel:$CMAKE_PREFIX_PATH"
 export PWD='/docker_share/catkin_ws/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/soya/docker_share/catkin_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/soya/docker_share/catkin_ws/src:$ROS_PACKAGE_PATH"
+export ROSLISP_PACKAGE_DIRECTORIES='/home/nvidia/docker_share/catkin_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/nvidia/docker_share/catkin_ws/src:$ROS_PACKAGE_PATH"

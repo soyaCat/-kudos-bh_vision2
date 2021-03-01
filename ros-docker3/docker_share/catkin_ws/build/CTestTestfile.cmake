@@ -1,5 +1,5 @@
 # CMake generated Testfile for 
-# Source directory: /home/soya/docker_share/catkin_ws/src
+# Source directory: /home/nvidia/docker_share/catkin_ws/src
 # Build directory: /docker_share/catkin_ws/build
 # 
 # This file includes the relevant testing commands required for 

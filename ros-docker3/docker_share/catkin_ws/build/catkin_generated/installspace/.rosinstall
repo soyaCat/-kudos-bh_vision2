@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/soya/docker_share/catkin_ws/install/setup.sh
+    local-name: /home/nvidia/docker_share/catkin_ws/install/setup.sh

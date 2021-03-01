@@ -1,8 +1,8 @@
-# Install script for directory: /home/soya/docker_share/catkin_ws/src
+# Install script for directory: /home/nvidia/docker_share/catkin_ws/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/soya/docker_share/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/nvidia/docker_share/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -44,38 +44,38 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/_setup_util.py")
+   "/home/nvidia/docker_share/catkin_ws/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE PROGRAM FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE PROGRAM FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/env.sh")
+   "/home/nvidia/docker_share/catkin_ws/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE PROGRAM FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE PROGRAM FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/env.sh")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/setup.bash;/home/soya/docker_share/catkin_ws/install/local_setup.bash")
+   "/home/nvidia/docker_share/catkin_ws/install/setup.bash;/home/nvidia/docker_share/catkin_ws/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE FILE FILES
     "/docker_share/catkin_ws/build/catkin_generated/installspace/setup.bash"
     "/docker_share/catkin_ws/build/catkin_generated/installspace/local_setup.bash"
     )
@@ -83,14 +83,14 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/setup.sh;/home/soya/docker_share/catkin_ws/install/local_setup.sh")
+   "/home/nvidia/docker_share/catkin_ws/install/setup.sh;/home/nvidia/docker_share/catkin_ws/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE FILE FILES
     "/docker_share/catkin_ws/build/catkin_generated/installspace/setup.sh"
     "/docker_share/catkin_ws/build/catkin_generated/installspace/local_setup.sh"
     )
@@ -98,14 +98,14 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/setup.zsh;/home/soya/docker_share/catkin_ws/install/local_setup.zsh")
+   "/home/nvidia/docker_share/catkin_ws/install/setup.zsh;/home/nvidia/docker_share/catkin_ws/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE FILE FILES
     "/docker_share/catkin_ws/build/catkin_generated/installspace/setup.zsh"
     "/docker_share/catkin_ws/build/catkin_generated/installspace/local_setup.zsh"
     )
@@ -113,14 +113,14 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/soya/docker_share/catkin_ws/install/.rosinstall")
+   "/home/nvidia/docker_share/catkin_ws/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/soya/docker_share/catkin_ws/install" TYPE FILE FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/nvidia/docker_share/catkin_ws/install" TYPE FILE FILES "/docker_share/catkin_ws/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
