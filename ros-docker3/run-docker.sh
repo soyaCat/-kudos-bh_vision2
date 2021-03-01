@@ -7,7 +7,7 @@ mkdir -p docker_share
 
 USER_UID=$(id -u)
 TAG='ros-kinetic-dev'
-IMAGE=$(docker inspect --format='{{.Config.Image}}'S)
+IMAGE=$(docker inspect --format='{{.Config.Image}}' $TAG)
 [ -c /dev/ttyACM0 ] && TTY='--device=/dev/ttyACM0'
 #IPADDR="--hostname="$(hostname -I | cut -d' ' -f1)
 
