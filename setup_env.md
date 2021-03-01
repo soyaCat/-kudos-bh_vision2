@@ -10,7 +10,7 @@
 ---
 
 # 설정 순서
-## ros 이미지 파일 생성
+## 1. ros 이미지 파일 생성
   #### 1. 우분투에 docker를 설치한다.  
   ```
   curl -fsSL https://get.docker.com/ | sudo sh
@@ -184,7 +184,117 @@ rqt_graph
   rosrun rviz rviz
   ```
   
-## op3 설치
-1. 도커에 op3설치를 시작한다.
-2. 
+## op3 설치  
+도커에 op3설치를 시작한다.  
+>참고 링크:https://emanual.robotis.com/docs/en/platform/op3/recovery/#recovery-of-robotis-op3  
+>추가 로보티즈 ROS패키지를 설치한다.
+```
+sudo apt install libncurses5-dev v4l-utils
+
+sudo apt install madplay mpg321
+
+sudo apt install g++ git
+```
+>op3를 위한 ROS패키지를 설치한다.
+```
+cd ~/docker_share/catkin_ws/src
+
+git clone https://github.com/ROBOTIS-GIT/face_detection.git
+
+cd ~/docker_share/catkin_ws
+
+catkin_make
+
+sudo apt install ros-kinetic-robot-upstart
+
+cd ~/docker_share/catkin_ws/src
+
+git clone https://github.com/bosch-ros-pkg/usb_cam.git
+
+cd ~/docker_share/catkin_ws
+
+catkin_make
+
+sudo apt install v4l-utils
+
+sudo apt install ros-kinetic-qt-ros
+```
+>humanoid navigation을 설치한다.
+```
+sudo apt-get install ros-kinetic-map-server
+
+sudo apt-get install ros-kinetic-humanoid-nav-msgs
+
+sudo apt-get install ros-kinetic-nav-msgs
+
+sudo apt-get install ros-kinetic-octomap
+
+sudo apt-get install ros-kinetic-octomap-ros
+
+sudo apt-get install ros-kinetic-octomap-server
+```
+>sbpl을 설치한다.
+```
+cd ~/docker_share/catkin_ws/src
+
+git clone https://github.com/sbpl/sbpl.git
+
+cd sbpl
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+sudo make install
+```
+>humanoid navigation을 마저 설치한다.
+>> ! catkin_make 중 humanoid_localization.cpp build에서 pcl/filters/uniform_sampling.h: No such file or directory 애러가 발생할수도 있는데 이는 op3가 pcl의 옛날 uniform_sampling의 패키지의 위치를 참조하기 때문에 발생하는 일임.  
+>> ! catkin_ws/src/humanoid_navigation/humanoid_localization/src/HumanoidLocalization.cpp를 gedit으로 열고 #include <pcl/filters/uniform_sampling.h>을 #include <pcl/keypoints/uniform_sampling.h>로 고치자
+```
+cd ~/docker_share/catkin_ws/src
+
+git clone https://github.com/ROBOTIS-GIT/humanoid_navigation.git
+
+cd ~/docker_share/catkin_ws
+
+catkin_make
+```
+>web_setting tools를 위한 패키지를 설치한다.
+```
+sudo apt install ros-kinetic-rosbridge-server ros-kinetic-web-video-server
+```
+>Robotis op3 Robotpackages를 설치하자
+>> !catkin_make 중 Robotis-OP3-Tools에서 action_editor 빌드 오류가 날 수도 있는데 깔끔하게 이 레포지스토리에 있는 ROBOTIS-OP3-Tools로 교체하면 해결된다.
+```
+cd ~/docker_share/catkin_ws/src
+
+git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Framework.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Math.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-OP3.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Demo.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-msgs.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Tools.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common.git
+
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Utility.git
+
+cd ~/docker_share/catkin_ws
+
+catkin_make
+```
+>설치가 끝났다면 도커 컨테이너 이미지 파일로 저장해야 되는거 잊지 말자
 ---
