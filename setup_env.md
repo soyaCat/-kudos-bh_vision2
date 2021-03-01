@@ -29,7 +29,7 @@ jetson에서 rviz나 gazebu를 돌리기에는 너무 무겁습니다.
   #docker version
   #또는 sudo docker version
   ```
-  
+  컴퓨터를 반드시 껐다 킨다
 >원한다면 docker를 관리하기 쉽게 만들어준다.  
 > sudo docker info | grep Root로 이미지 저장 경로를 확인 할 수 있다.
 >```
