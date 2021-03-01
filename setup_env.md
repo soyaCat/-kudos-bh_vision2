@@ -10,9 +10,9 @@
 ---
 
 # 설정 순서
->설치하기 전에 한글설치정도는 하면 편하다
->git을 설치해주고 다음 명령어를 입력해주자
->git config --global credential.helper 'cache --timeout 720000'
+>설치하기 전에 한글설치정도는 하면 편하다  
+>git을 설치해주고 다음 명령어를 입력해주자  
+>git config --global credential.helper 'cache --timeout 720000'  
 ## 1. ros 이미지 파일 생성
   #### 1. 우분투에 docker를 설치한다.(host)  
   ```
