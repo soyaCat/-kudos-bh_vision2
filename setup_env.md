@@ -5,7 +5,7 @@
 
 # 환경
   - ubuntu18.04
-  - jetson의 경우 jetpack 4.4
+  - jetson의 경우 jetpack 4.5
   
 ---
 
