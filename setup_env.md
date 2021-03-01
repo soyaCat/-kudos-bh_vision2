@@ -1,7 +1,7 @@
 # -kudos-bh_vision2
 쿠도스 비전 2 설치 방법에 대해 정리한 페이지입니다.  
 jetson 설치에 관한 내용과 노트북에 환경 설치에 대한 내용이 같이 있어서 혼란스러울수도 있습니다.  
-jetson의 경우 ARM기반 아키텍처를 가지고 있습니다. 따라서 rviz나 가제부는 돌아가지 않습니다.  
+jetson에서 rviz나 gazebu를 돌리기에는 너무 무겁습니다. 
 반면 평범한 노트북에서는 rviz나 gazebu가 잘 돌아갑니다.  
 따라서 jetson에는 ros-docker4 대신 ros-docker3을 가지고 설치를 진행해주시면 되겠습니다.  
 또한 jetson에서는 nvidia-docker2설치과정은 넘어가시면 되겠습니다.  
