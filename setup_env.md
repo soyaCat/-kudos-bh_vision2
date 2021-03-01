@@ -1,5 +1,10 @@
 # -kudos-bh_vision2
-쿠도스 비전 2 설치 방법에 대해 정리한 페이지입니다.
+쿠도스 비전 2 설치 방법에 대해 정리한 페이지입니다.  
+jetson 설치에 관한 내용과 노트북에 환경 설치에 대한 내용이 같이 있어서 혼란스러울수도 있습니다.  
+jetson의 경우 ARM기반 아키텍처를 가지고 있습니다. 따라서 rviz나 가제부는 돌아가지 않습니다.  
+반면 평범한 노트북에서는 rviz나 gazebu가 잘 돌아갑니다.  
+따라서 jetson에는 ros-docker4 대신 ros-docker3을 가지고 설치를 진행해주시면 되겠습니다.  
+또한 jetson에서는 nvidia-docker2설치과정은 넘어가시면 되겠습니다.  
 
 ---
 
@@ -25,9 +30,9 @@
   #또는 sudo docker version
   ```
 >원한다면 docker를 관리하기 쉽게 만들어준다.  
-> docker info | grep Root로 이미지 저장 경로를 확인 할 수 있다.
+> sudo docker info | grep Root로 이미지 저장 경로를 확인 할 수 있다.
 >```
->docker info | grep Root
+>sudo docker info | grep Root
 >```
 >/lib/systemd/system/docker.service을 수정해준다. 
 >```
@@ -35,12 +40,16 @@
 >```
 >파일 14라인에 --data-root 옵션으로 새로운 저장 경로를 설정한다.
 >```
->ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --data-root=/home/soya/docker/docker_build/
+>ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --data-root=/home/사용자 이름/docker/docker_build/
 >```
 >도커를 재부팅한다.
 >```
->service docker stop
->service docker start
+>sudo service docker stop
+>systemctl daemon-reload
+>sudo service docker start
+>mkdir ~/docker/
+>cd ~/docker/
+>mkdir docker_build
 >```
 >경로가 제대로 수정되었는지 확인한다.  
 >도커 이미지를 지속적으로 생성하고 만들다보면 차지하는 용량이 너무 커질 수도 있는데 이때 이미지와 컨테이너를 정리하는 것이 필요하다.  
