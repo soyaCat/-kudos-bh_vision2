@@ -11,7 +11,7 @@
 
 # 설정 순서
 ## 1. ros 이미지 파일 생성
-  #### 1. 우분투에 docker를 설치한다.  
+  #### 1. 우분투에 docker를 설치한다.(host)  
   ```
   curl -fsSL https://get.docker.com/ | sudo sh
   
@@ -49,7 +49,7 @@
 >sudo docker rmi -f [이미지id]로 이미지를 삭제하면서 생성된 컨테이너도 같이 삭제할 수있다.  
 >sudo docker commit 컨테이터이름 생성할이미지이름으로 생성된 컨테이너를 이미지화 할 수 있다.  
 
-  #### 2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치  
+  #### 2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치(host)  
   docker version 명령어로 도커 설치를 확인한다.    
   혹여 nvidia docker1이 설치되어 있을 수도 있으니 다음 명령어로 깔끔하게 삭제해준다.  
   ```
@@ -93,16 +93,16 @@ sudo apt-get update
   sudo systemctl restart docker
   ```
   
-  #### 3. 원하는 경로에 ros-docker4폴더를 둔다.  
-  #### 4. 터미널에서 ros-docker4로 들어간뒤 build.sh파일을 실행시켜준다.
+  #### 3. 원하는 경로에 ros-docker4폴더를 둔다.(host)  
+  #### 4. 터미널에서 ros-docker4로 들어간뒤 build.sh파일을 실행시켜준다.(host)
   ```
   ./build.sh
   ```
-  #### 5. 생성된 이미지를 확인한다. 아마 ros_kinect_full이라는 이미지가 생성되었을 것이다.  
-  #### 7. run-docker.sh파일을 실행시켜준다.
-  #### 8. 그러면 실행 터미널에서 이미지를 가지고 컨테이너를 만들어 접속한다.
-  #### 9. ls치면 docker_share이라는 폴더가 보일텐데 호스트 컴퓨터와 컨테이너 이미지가 공동으로 사용하는 폴더라 생각하면 된다. 이 폴더 아래에 catkin_ws를 설정해야함을 주의하자
-  #### 10. 이제 본격적으로 ros를 설치한다.
+  #### 5. 생성된 이미지를 확인한다. 아마 ros_kinect_full이라는 이미지가 생성되었을 것이다.(host)  
+  #### 7. run-docker.sh파일을 실행시켜준다.(host)
+  #### 8. 그러면 실행 터미널에서 이미지를 가지고 컨테이너를 만들어 접속한다.(host)
+  #### 9. ls치면 docker_share이라는 폴더가 보일텐데 호스트 컴퓨터와 컨테이너 이미지가 공동으로 사용하는 폴더라 생각하면 된다. 이 폴더 아래에 catkin_ws를 설정해야함을 주의하자(docker)
+  #### 10. 이제 본격적으로 ros를 설치한다.(docker)
   ```
   sudo apt-get install -y chrony ntpdate
   
@@ -142,14 +142,14 @@ sudo apt-get update
   
   source ~/docker_share/catkin_ws/devel/setup.bash
   ```
-  #### 11. roscore를 실행시켜보고 잘 되면 ctrl+C로 나간다.
-  #### 12. gedit을 깐다.
-  #### 13. 다음 명령을 입력한다.
+  #### 11. roscore를 실행시켜보고 잘 되면 ctrl+C로 나간다.(docker)
+  #### 12. gedit을 깐다.(docker)
+  #### 13. 다음 명령을 입력한다.(docker)
   ```
   source /opt/ros/kinetic/setup.bash
   source ~/docker_share/catkin_ws/devel/setup.bash
   ```
-  #### 14. gedit ~/.bashrc을 실행 시켜 다음의 내용을 삽입한다.(비슷해보이는 부분이 있을텐데 지우거나 수정하면 된다.)
+  #### 14. gedit ~/.bashrc을 실행 시켜 다음의 내용을 삽입한다.(비슷해보이는 부분이 있을텐데 지우거나 수정하면 된다.)(docker)
   ```
   alias eb ='nano ~/.bashrc'
   alias sb ='source ~/.bashrc'
@@ -162,9 +162,10 @@ sudo apt-get update
   export ROS_HOSTNAME=localhost
   ```
   
-  #### 15.컨테이너는 휘발성이기 때문에 docker_share안의 내용물을 제외하고는 종료했다가 다시 실행하면 그 내역이 모두 날아가게된다. roscore 실행을 확인했다면 그 컨테이너를 이미지로 저장해준다.(위에 하는 방법 적혀있음<sudo docker commit 컨테이터이름 생성할이미지이름>), 나는 ros_kinect_full로 이미지 파일 이름을 통일할 것이기 때문에 이미지 파일 이름을 똑같이 해주면 편할 것이다. 이미지 파일로 만들어주면 ros설치는 종료다.  
-  #### 16. ros의 사용법은 큰 차이는 없다. 가장 큰 차이라면 호스트의 터미널을 실행시켰다면 ./run-docker.sh를 이용하여 컨테이너 터미널로 만들어주어야한다는 사실 정도이다. 터미널 4개를 틀고 각각 ./run-docker.sh을 실행시켜 준 후 각 터미널에 다음 명령을 입력하여 ros의 최종 설치를 확인한다.
+  #### 15.컨테이너는 휘발성이기 때문에 docker_share안의 내용물을 제외하고는 종료했다가 다시 실행하면 그 내역이 모두 날아가게된다. roscore 실행을 확인했다면 그 컨테이너를 이미지로 저장해준다.(위에 하는 방법 적혀있음<sudo docker commit 컨테이터이름 생성할이미지이름>), 나는 ros_kinect_full로 이미지 파일 이름을 통일할 것이기 때문에 이미지 파일 이름을 똑같이 해주면 편할 것이다. 이미지 파일로 만들어주면 ros설치는 종료다.(host)  
+  #### 16. ros의 사용법은 큰 차이는 없다. 가장 큰 차이라면 호스트의 터미널을 실행시켰다면 ./run-docker.sh를 이용하여 컨테이너 터미널로 만들어주어야한다는 사실 정도이다. 터미널 4개를 틀고 각각 ./run-docker.sh을 실행시켜 준 후 각 터미널에 다음 명령을 입력하여 ros의 최종 설치를 확인한다.(host)
 ```
+#각 터미널은 도커 환경을 활성화한 터미널
 #터미널1
 roscore
 
@@ -184,7 +185,7 @@ rqt_graph
   rosrun rviz rviz
   ```
   
-## op3 설치  
+## op3 설치(docker)  
 도커에 op3설치를 시작한다.  
 >참고 링크:https://emanual.robotis.com/docs/en/platform/op3/recovery/#recovery-of-robotis-op3  
 >추가 로보티즈 ROS패키지를 설치한다.
@@ -296,5 +297,5 @@ cd ~/docker_share/catkin_ws
 
 catkin_make
 ```
->설치가 끝났다면 도커 컨테이너 이미지 파일로 저장해야 되는거 잊지 말자
+>설치가 끝났다면 도커 컨테이너 이미지 파일로 저장해야 되는거 잊지 말자!
 ---
