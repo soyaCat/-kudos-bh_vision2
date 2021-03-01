@@ -34,7 +34,6 @@ done
 if [ -z "$IMAGE" ]; then
     IMAGE='ros_kinect_full'
     docker run -it  \
-      --runtime=nvidia \
       --init \
       --net=host \
       $IPADDR \
