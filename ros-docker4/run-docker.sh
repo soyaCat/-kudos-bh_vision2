@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 
-xhost local:root
+xhost +local:root
 
 mkdir -p docker_share
 
@@ -33,7 +33,8 @@ done
 
 if [ -z "$IMAGE" ]; then
     IMAGE='ros_kinect_full'
-    docker run -it  \
+    docker run --gpus all -it \
+      --runtime=nvidia \
       --init \
       --net=host \
       $IPADDR \
@@ -44,11 +45,14 @@ if [ -z "$IMAGE" ]; then
       -e USER=$USER \
       --env=UDEV=1 \
       --env=LIBUSB_DEBUG=1 \
+      --env="DISPLAY" \
+      --env="QT_X11_NO_MITSHM=1" \
       ${ENV_PARAMS[@]} \
-      -v "/tmp/.X11-unix:/tmp/.X11-unix" \
+      -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
       -v "$PWD/docker_share:/docker_share" \
       --volume=/run/user/${USER_UID}/pulse:/run/user/1000/pulse \
       --group-add=plugdev \
+      --privileged \
       --group-add=video \
       --device=/dev/dri:/dev/dri \
       $TTY \

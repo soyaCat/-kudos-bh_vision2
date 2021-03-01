@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/soya/docker_share/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/soya/docker_share/catkin_ws/install -G Unix Makefiles
