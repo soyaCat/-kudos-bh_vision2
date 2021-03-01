@@ -50,11 +50,10 @@
 >sudo docker commit 컨테이터이름 생성할이미지이름으로 생성된 컨테이너를 이미지화 할 수 있다.  
 
   2. 가제부 ,rviz등의 사용을 위한 nvidia docker2 설치(선택)  
-  docker version 명령어로 도커 설치를 확인한다.  
-  https://github.com/docker/compose/releases/로 가서 릴리즈 최신 정보를 확인해준다. (현재 글 작성 기준 1.28.5)  
+  docker version 명령어로 도커 설치를 확인한다.    
   혹여 nvidia docker1이 설치되어 있을 수도 있으니 다음 명령어로 깔끔하게 삭제해준다.  
   ```
-  docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
 sudo apt-get purge -y nvidia-docker
   ```
   apt키와 레포지스토리를 추가해준다.  
@@ -94,8 +93,8 @@ sudo apt-get update
   sudo systemctl restart docker
   ```
   
-  3. 원하는 경로에 ros-docker3폴더를 둔다.  
-  4. 터미널에서 ros-docker3로 들어간뒤 build.sh파일을 실행시켜준다.
+  3. 원하는 경로에 ros-docker4폴더를 둔다.  
+  4. 터미널에서 ros-docker4로 들어간뒤 build.sh파일을 실행시켜준다.
   ```
   ./build.sh
   ```
