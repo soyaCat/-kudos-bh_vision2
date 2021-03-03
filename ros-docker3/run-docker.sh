@@ -49,11 +49,14 @@ if [ -z "$IMAGE" ]; then
       ${ENV_PARAMS[@]} \
       -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
       -v "$PWD/docker_share:/docker_share" \
+      -v /dev:/dev \
       --volume=/run/user/${USER_UID}/pulse:/run/user/1000/pulse \
       --group-add=plugdev \
       --privileged \
       --group-add=video \
+      --device /dev/ttyUSB0:/dev/ttyUSB0 \
       --device=/dev/dri:/dev/dri \
+      -v /dev/bus/usb:/dev/bus/usb \
       $TTY \
       --name=$TAG \
       $IMAGE \
